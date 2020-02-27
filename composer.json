@@ -1,0 +1,24 @@
+{
+    "name": "dalesnowdon/paginator",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Dale Snowdon",
+            "email": "dksnowdon@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Paginator\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": { "Tests\\": "tests/" }
+    },
+    "description": "A paginator component"
+}
