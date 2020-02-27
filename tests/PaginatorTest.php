@@ -26,7 +26,7 @@ class PaginatorTest extends TestCase
        $total_count = 74;
 
        $this->repository_mock
-           ->method('totalElements')
+           ->method('count')
            ->willReturn($total_count);
 
        $paginator = new Paginator($this->repository_mock);

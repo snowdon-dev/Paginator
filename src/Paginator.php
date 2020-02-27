@@ -7,9 +7,20 @@ class Paginator implements InterfacePaginator
 
     private InterfaceRepository $repository;
 
+    /**
+     * @var mixed[]
+     */
+    private array $filters;
+
     public function __construct(InterfaceRepository $repository)
     {
         $this->repository = $repository;
+        $this->filters = [];
+    }
+
+    public function addFilter($filter)
+    {
+        $this->filters[] = $filter;
     }
 
     public function elements(): iterable
@@ -32,7 +43,7 @@ class Paginator implements InterfacePaginator
 
     public function totalElements(): int
     {
-        return $this->repository->count();
+        return $this->repository->count($this->filters);
     }
 
     public function totalElementsOnCurrentPage(): int
