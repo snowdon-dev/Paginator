@@ -12,10 +12,22 @@ class Paginator implements InterfacePaginator
      */
     private array $filters;
 
-    public function __construct(InterfaceRepository $repository)
+    /**
+     * @var int
+     */
+    private int $pageNo;
+
+
+    /**
+     * Paginator constructor.
+     * @param InterfaceRepository   $repository
+     * @param int                   $pages          the page to request from the repository
+     */
+    public function __construct(InterfaceRepository $repository, int $pages = 1)
     {
         $this->repository = $repository;
         $this->filters = [];
+        $this->pageNo = $pages;
     }
 
     public function addFilter($filter)

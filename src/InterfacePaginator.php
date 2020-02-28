@@ -5,6 +5,7 @@ namespace Paginator;
 interface InterfacePaginator
 {
     public function elements(): iterable;
+
     public function currentPage(): int;
 
     /**
