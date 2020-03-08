@@ -29,13 +29,25 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
         // @todo implement reflection to sort according to type inference
         sort($segment);
 
-        return $segment;
+        return $this->returnFactory($segment);
+    }
+
+    private function returnFactory($input_segment)
+    {
+        if ($this->input instanceof \ArrayIterator) {
+            return new \ArrayIterator($input_segment);
+        }
+
+        if ($this->input instanceof \ArrayObject) {
+            return new \ArrayObject($input_segment);
+        }
+
+        return $input_segment;
     }
 
     private function getInput(): iterable
     {
-        $tmp_array = $this->input; // create a duplicate array
-        return $tmp_array; // before returning it
+        return $this->input;
     }
 
     /**

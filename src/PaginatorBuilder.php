@@ -10,7 +10,7 @@ class PaginatorBuilder
      *
      * @var string|null
      */
-    private ?string $repository = null;
+    private ?InterfaceRepository $repository = null;
     /**
      * Collection of filter functions.
      *
@@ -66,9 +66,7 @@ class PaginatorBuilder
     
     public function paginate(int $page, int $perPage = 0): InterfacePaginator
     {
-        $class = $this->getRepository();
-        /** @var InterfaceRepository $repository */
-        $repository = new $class;
+        $repository = $this->getRepository();
 
         if ($repository instanceof InterfaceInjectable && isset($this->input)) {
             /** @var InterfaceInjectable $repository */
@@ -86,6 +84,6 @@ class PaginatorBuilder
 
     protected function getRepository()
     {
-        return isset($this->repository) ? $this->repository : DefaultRepository::class;
+        return isset($this->repository) ? $this->repository : new DefaultRepository();
     }
 }
