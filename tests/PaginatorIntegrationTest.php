@@ -73,18 +73,10 @@ class PaginatorIntegrationTest extends TestCase
         $builder
             ->setElementsPerPage(1)
             ->addRepository(new class implements InterfaceRepository {
-
-                /**
-                 * @inheritDoc
-                 */
                 public function get(int $start, int $end, array $filters = [], string $sort = InterfacePaginator::SORT_ASC): iterable
                 {
                     return [1];
                 }
-
-                /**
-                 * @inheritDoc
-                 */
                 public function count(array $filters): int
                 {
                     return 1;
