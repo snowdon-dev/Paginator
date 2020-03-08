@@ -1,5 +1,5 @@
 {
-    "name": "dalesnowdon/paginator",
+    "name": "snowdon-dev/paginator",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -8,11 +8,11 @@
             "email": "dksnowdon@gmail.com"
         }
     ],
-    "require": {
-        "symfony/var-dumper": "^5.0"
-    },
     "require-dev": {
         "phpunit/phpunit": "^9.0"
+    },
+    "require": {
+        "php": ">=7.4.0"
     },
     "autoload": {
         "psr-4": {
