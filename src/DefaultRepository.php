@@ -17,7 +17,7 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
         $segment = array_splice($this->input, $start - 1, $end - 1);
 
         $valid_map = array_map('is_callable', $filters);
-        var_dump($filters);
+
         if (in_array(false, $valid_map)) {
             throw new \InvalidArgumentException('Filter must be a callable');
         }

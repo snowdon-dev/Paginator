@@ -11,13 +11,21 @@ class PaginatorBuilder
      * @var string|null
      */
     private ?string $repository = null;
-
+    /**
+     * Collection of filter functions.
+     *
+     * @var callable[]
+     */
     private array $filters = [];
     /**
+     * The number of items to display per page.
+     *
      * @var int
      */
     private ?int $perPage = null;
     /**
+     * The sort direction.
+     *
      * @var string
      */
     private ?string $sort = null;
