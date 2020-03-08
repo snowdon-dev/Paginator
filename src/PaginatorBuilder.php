@@ -29,6 +29,10 @@ class PaginatorBuilder
      * @var string
      */
     private ?string $sort = null;
+    /**
+     * @var iterable
+     */
+    private ?iterable $input = null;
 
     public function addRepository(InterfaceRepository $repo): self
     {
@@ -53,16 +57,22 @@ class PaginatorBuilder
         $this->sort = $sort;
         return $this;
     }
+
+    public function setInput($input): self
+    {
+        $this->input = $input;
+        return $this;
+    }
     
-    public function paginate(int $page, $input = null, int $perPage = 0): InterfacePaginator
+    public function paginate(int $page, int $perPage = 0): InterfacePaginator
     {
         $class = $this->getRepository();
         /** @var InterfaceRepository $repository */
         $repository = new $class;
 
-        if ($repository instanceof InterfaceInjectable && isset($input)) {
+        if ($repository instanceof InterfaceInjectable && isset($this->input)) {
             /** @var InterfaceInjectable $repository */
-            $repository->setInput($input);
+            $repository->setInput($this->input);
         }
 
         return new Paginator(

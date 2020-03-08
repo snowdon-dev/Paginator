@@ -83,7 +83,7 @@ class PaginatorTest extends TestCase
         $this->repository_mock
             ->expects($this->once())
             ->method('get')
-            ->with(1, 4, [])
+            ->with(1, 3, [])
             ->willReturn($returnArray);
 
         $paginator = new Paginator($this->repository_mock, $pageSize);
@@ -92,7 +92,7 @@ class PaginatorTest extends TestCase
         $this->assertEquals($returnArray, $elements);
     }
 
-    public function testReturnsPageElementsSecondPage()
+    public function testasdfsdfReturnsPageElementsSecondPage()
     {
         $pageSize = 3;
 
@@ -105,7 +105,7 @@ class PaginatorTest extends TestCase
         $this->repository_mock
             ->expects($this->once())
             ->method('get')
-            ->with(4, 7, [])
+            ->with(4, 3, [])
             ->willReturn($returnArray);
 
         $paginator = new Paginator($this->repository_mock, $pageSize, 2);
@@ -127,7 +127,7 @@ class PaginatorTest extends TestCase
         $this->repository_mock
             ->expects($this->once())
             ->method('get')
-            ->with(16, 21, [])
+            ->with(16, 5, [])
             ->willReturn($returnArr);
 
         $paginator = new Paginator($this->repository_mock, $pageSize, 4);
@@ -149,7 +149,7 @@ class PaginatorTest extends TestCase
         $this->repository_mock
             ->expects($this->once())
             ->method('get')
-            ->with(21, 26, [])
+            ->with(21, 5, [])
             ->willReturn($returnArr);
 
         $paginator = new Paginator($this->repository_mock, $pageSize, 5);

@@ -3,6 +3,7 @@
 
 ## Usage
   ```php
+<?php
   use Paginator\PaginatorBuilder;
   
   require './vendor/autoload.php';
@@ -13,7 +14,8 @@
       return true;
   })
       ->setElementsPerPage(1)
-      ->paginate(1, [1, 2]);
+      ->setInput([1, 2])
+      ->paginate(1);
   
   var_dump($paginator->elements());
   ```

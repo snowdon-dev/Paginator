@@ -14,8 +14,8 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
      */
     public function get(int $start, int $end, array $filters = [], string $sort = InterfacePaginator::SORT_ASC): iterable
     {
-        $segment = array_splice($this->input, $start - 1, $end - 1);
-
+        $tmp_array = (array) $this->getInput();
+        $segment = array_splice($tmp_array, $start - 1, $end);
         $valid_map = array_map('is_callable', $filters);
 
         if (in_array(false, $valid_map)) {
@@ -26,11 +26,16 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
             $segment = array_filter($segment, $filter);
         }
 
-
         // @todo implement reflection to sort according to type inference
         sort($segment);
 
         return $segment;
+    }
+
+    private function getInput(): iterable
+    {
+        $tmp_array = $this->input; // create a duplicate array
+        return $tmp_array; // before returning it
     }
 
     /**
@@ -38,7 +43,7 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
      */
     public function count(array $filters): int
     {
-
+        return count($this->input);
     }
 
     public function setInput($input)

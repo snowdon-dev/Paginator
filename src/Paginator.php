@@ -70,7 +70,7 @@ class Paginator implements InterfacePaginator
         $start = ($this->currentPage() - 1) * $this->perPage + 1;
         return $this->currentElements = $this->repository->get(
             $start,
-            $start + $this->perPage,
+            $this->perPage,
             $this->filters,
             $this->sort
         );
