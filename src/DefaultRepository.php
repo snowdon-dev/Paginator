@@ -12,21 +12,25 @@ class DefaultRepository implements InterfaceRepository, InterfaceInjectable
     /**
      * @inheritDoc
      */
-    public function get(int $start, int $end, array $filters = [], string $sort = InterfacePaginator::SORT_ASC): iterable
-    {
+    public function get(
+        int $start,
+        int $end,
+        array $filters = [],
+        string $sort = InterfacePaginator::SORT_ASC
+    ): iterable {
         $tmp_array = (array) $this->getInput();
         $segment = array_splice($tmp_array, $start - 1, $end);
         $valid_map = array_map('is_callable', $filters);
 
         if (in_array(false, $valid_map)) {
-            throw new \InvalidArgumentException('Filter must be a callable');
+            throw new \InvalidArgumentException('Filter must be callable');
         }
 
         foreach($filters as $filter) {
             $segment = array_filter($segment, $filter);
         }
 
-        // @todo implement reflection to sort according to type inference
+        // @todo implement reflection to sort according to type
         sort($segment);
 
         return $this->returnFactory($segment);

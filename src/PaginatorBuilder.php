@@ -8,7 +8,7 @@ class PaginatorBuilder
     /**
      * Namespace to the php class for the repository.
      *
-     * @var string|null
+     * @var InterfaceRepository|null
      */
     private ?InterfaceRepository $repository = null;
     /**
@@ -84,6 +84,8 @@ class PaginatorBuilder
 
     protected function getRepository()
     {
-        return isset($this->repository) ? $this->repository : new DefaultRepository();
+        return isset($this->repository)
+            ? $this->repository
+            : new DefaultRepository();
     }
 }
